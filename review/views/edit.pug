@@ -1,0 +1,19 @@
+html   
+    head
+        title= title_man
+        meta(charset='utf-8')
+    body
+        h1 
+            a(href='/edit/complete') server side js
+        ul
+            each topic in topics
+                li
+                    a(href='/edit/complete/'+topic)= topic
+        article    
+            form(action="/edit/complete" method='post')
+                p
+                    input(type='text' method='post' name='title')
+                p
+                    textarea(name='description')
+                p
+                    input(type='submit')
