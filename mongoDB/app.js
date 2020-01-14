@@ -13,6 +13,8 @@ const expressSession = require('express-session');
 
 const app = express();
 
+app.set('view engine', 'pug');
+
 // 서버에서 사용할 포트 정보를 port라는 이름으로 설정
 app.set('port', precess.env.PORT || 3000);
 
