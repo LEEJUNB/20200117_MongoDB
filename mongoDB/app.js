@@ -2,7 +2,7 @@ const express = require('express'),
     http = require('http'),
     path = require('path');
 
-const bodyParser = require('body-parser'),
+var bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     static = require('serve-static'),
     errorHandler = require('errorhandler');
@@ -14,9 +14,11 @@ const expressSession = require('express-session');
 const app = express();
 
 app.set('view engine', 'pug');
+app.set('views','./public'); // 그런데 미들웨어에서 이미 public으로 들어가도록 했는데 이게 필요한가? 한번 생략해보고 진행해보자
+app.locals.pretty = true;
 
 // 서버에서 사용할 포트 정보를 port라는 이름으로 설정
-app.set('port', precess.env.PORT || 3000);
+app.set('port', process.env.PORT || 3000);
 
 // 파싱
 app.use(bodyParser.urlencoded({extended:false}));
@@ -48,9 +50,9 @@ router.route('/process/login').post(function(req,res){
 app.use('/', router);
 
 // 404 err page
-const errorHandler = expressErrorHandler({
+var errorHandler = expressErrorHandler({
     static : {
-        '404' : './public/404.html'
+        '404' : './public/404.pug'
     }
 });
 
